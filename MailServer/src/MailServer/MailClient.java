@@ -4,8 +4,14 @@ import java.util.LinkedList;
 
 public class MailClient {
 
-	public MailClient(String string) {
-		// TODO Auto-generated constructor stub
+	private String address1;
+	private LinkedList<String> textFromScan=new LinkedList<>();
+	private boolean isSender;
+	private String name;
+	private MailServer ms=new MailServer();
+	public MailClient(String name) {
+		this.name = name;
+		
 	}
 
 	public String getAddressOfClient() {
@@ -14,33 +20,39 @@ public class MailClient {
 	}
 
 	public void set_address(String address1) {
-		// TODO Auto-generated method stub
+		this.address1 = address1;
+		
 		
 	}
 
-	public void setText(String textFromScan) {
-		// TODO Auto-generated method stub
+	public void setText(String text) {
+		textFromScan.add(text);
+		
 		
 	}
 
-	public void set_isSender(boolean b) {
-		// TODO Auto-generated method stub
+	public void set_isSender(boolean isSender) {
+		this.isSender = isSender;
+		
 		
 	}
 
 	public void sendToServer() {
-		// TODO Auto-generated method stub
+		ms.putMessage(MailClient.this);
 		
 	}
-
+	public void receivedFromServer(String addr) {
+		ms.selectAllMessagesForReceivder(addr);
+		
+	}
 	public String getAddress() {
-		// TODO Auto-generated method stub
-		return null;
+		
+		return address1;
 	}
 
 	public LinkedList<String> getText() {
-		// TODO Auto-generated method stub
-		return null;
+		
+		return textFromScan;
 	}
 
 }

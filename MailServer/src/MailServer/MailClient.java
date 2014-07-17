@@ -42,7 +42,7 @@ public class MailClient {
 		
 	}
 	public void receivedFromServer(String addr) {
-		ms.selectAllMessagesForReceivder(addr);
+		ms.printAllMessageForReceivder(addr);
 		
 	}
 	public String getAddress() {

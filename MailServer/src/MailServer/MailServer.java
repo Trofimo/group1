@@ -2,11 +2,11 @@ package MailServer;
 
 
 
-import java.util.Iterator;
+
 import java.util.LinkedHashMap;
 import java.util.LinkedList;
+import java.util.ListIterator;
 import java.util.Map;
-import java.util.Set;
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -20,7 +20,7 @@ import java.util.concurrent.LinkedBlockingQueue;
 public class MailServer {
 	
 	
-	Map<String, LinkedList<String>> inboxMessage=new LinkedHashMap<String, LinkedList<String>>();
+	
 	Map<String, LinkedList<String>> outboxMessage=new LinkedHashMap<String, LinkedList<String>>();
 	Map<String, LinkedList<String>> allMessages=new LinkedHashMap<String, LinkedList<String>>();
 	BlockingQueue<Runnable>	actions = new LinkedBlockingQueue<>();
@@ -30,24 +30,21 @@ public class MailServer {
 	
 	
 	
-	public void selectAllMessagesForReceivder(String key){
-		
-		System.out.println("There is in box" + outboxMessage.size() +
-                " messages.");
+	public LinkedList<String> selectAllMessagesForReceivder(String key){
+		tx=outboxMessage.get(key);
 
-
-		Set<?> entries = outboxMessage.entrySet();
-		Iterator<?> i = entries.iterator();
-		while (i.hasNext()) {
-		Map.Entry entry = (Map.Entry)i.next();
-		System.out.println(entry.getKey() + " : "
-		+ entry.getValue());
-		}
-		System.out.println();
-		
+        return tx;
 				
 	}
-
+	public void printAllMessageForReceivder(String key){
+		System.out.println("There is " + tx.size() +
+	            " messages for this address."+key);
+		LinkedList<String> list = selectAllMessagesForReceivder(key);
+		ListIterator<String> itr = list.listIterator();
+		while (itr.hasNext()){
+		    System.out.println(itr.next());}
+		
+		}
 	public void putMessage(MailClient client){
 		
         tx=outboxMessage.get(client.getAddress());
@@ -60,8 +57,8 @@ public class MailServer {
     	}
     	tx.add(client.getText());
 		
-		selectAllMessagesForReceivder(client.getAddress());
-
+		
+		printAllMessageForReceivder(client.getAddress());
 			
 	}
 	

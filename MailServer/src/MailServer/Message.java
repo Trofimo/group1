@@ -15,13 +15,7 @@ public class Message {
 		
 		
 
-		public static void receivedMessageFromServer() {
-			Scanner sc= new Scanner(System.in);
-			System.out.println("Enter address");
-			String addr="";
-			addr=sc.nextLine();
-			c1.receivedFromServer(addr);
-		}
+		
 
 	    public static void sendMessageToServer() {
 	    	  Scanner sc= new Scanner(System.in);
@@ -43,20 +37,12 @@ public class Message {
 		}
 		
 		public void go() {
-			Scanner sc= new Scanner(System.in);
-			int flag=0;
+			
 			
 			while (true) {
 				
-//				System.out.println("Press 1 for send or 2 for received:");
-//				flag = sc.nextInt();
-//				if (flag == 1) {
-					
-					sendMessageToServer();
-//				} else if (flag == 2) {
-//					
-//					receivedMessageFromServer();
-//				}
+             sendMessageToServer();
+
 			}
 			
 			

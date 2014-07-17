@@ -48,15 +48,15 @@ public class Message {
 			
 			while (true) {
 				
-				System.out.println("Press 1 for send or 2 for received:");
-				flag = sc.nextInt();
-				if (flag == 1) {
+//				System.out.println("Press 1 for send or 2 for received:");
+//				flag = sc.nextInt();
+//				if (flag == 1) {
 					
 					sendMessageToServer();
-				} else if (flag == 2) {
-					
-					receivedMessageFromServer();
-				}
+//				} else if (flag == 2) {
+//					
+//					receivedMessageFromServer();
+//				}
 			}
 			
 			

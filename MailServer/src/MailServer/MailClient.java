@@ -5,7 +5,7 @@ import java.util.LinkedList;
 public class MailClient {
 
 	private String address1;
-	private LinkedList<String> textFromScan=new LinkedList<>();
+	private String textFromScan;
 	private boolean isSender;
 	private String name;
 	private MailServer ms=new MailServer();
@@ -26,7 +26,7 @@ public class MailClient {
 	}
 
 	public void setText(String text) {
-		textFromScan.add(text);
+		textFromScan=text;
 		
 		
 	}
@@ -50,7 +50,7 @@ public class MailClient {
 		return address1;
 	}
 
-	public LinkedList<String> getText() {
+	public String getText() {
 		
 		return textFromScan;
 	}

@@ -8,9 +8,10 @@ public class PersisterTest {
 
 	@Test
 	public void test() {
-		Persister.persist("one");
+		User fakeuser=new User("Mike","321","mike@mail.ru");
+		Persister.persist(fakeuser);
 		assertTrue(Persister.tables.size()>0);
-		assertEquals("Users", Persister.tables.get(0));
+		assertEquals("User", Persister.tables.get(0));
 	}
 
 }

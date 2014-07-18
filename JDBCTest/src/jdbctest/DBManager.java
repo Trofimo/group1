@@ -37,7 +37,7 @@ public class DBManager {
 			System.out.println(resultSet.getString(1));
 			resultSet.close();
 			
-			resultSet = st.executeQuery("Select * from Users");
+			resultSet = st.executeQuery("Select * from User");
 			while(resultSet.next()){
 				System.out.println(resultSet.getString("name"));
 				System.out.println(resultSet.getString("password"));
@@ -49,7 +49,7 @@ public class DBManager {
 			
 			
 			PreparedStatement prepareStatement = 
-					DBManager.connection().prepareStatement("insert into Users values(?,?,?)");
+					DBManager.connection().prepareStatement("insert into User values(?,?,?)");
 			addUser(prepareStatement, "Pete", "54321", "s@hjkhk");
 			addUser(prepareStatement, "Pete", "54321", "s@hjkhk");
 			addUser(prepareStatement, "Pete", "54321", "s@hjkhk");

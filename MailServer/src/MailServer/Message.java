@@ -37,11 +37,15 @@ public class Message {
 		}
 		
 		public void go() {
-			
-			
+			Scanner sc= new Scanner(System.in);
+			int f=0;
 			while (true) {
-				
-             sendMessageToServer();
+			System.out.println("Press 1 for sending or 2 for receive:");
+			
+			f=sc.nextInt();
+			if(f==1){
+             sendMessageToServer();}
+			else{receiveMessage();}
 
 			}
 			
@@ -57,6 +61,26 @@ public class Message {
 		
         Communicator cm=new Communicator();
 		cm.go();
+		
+	}
+
+
+
+
+	public static void receiveMessage() {
+		Scanner sc= new Scanner(System.in);
+	    String addr="";
+	    String textFromScan="";
+	    
+	    
+	    	System.out.println("Enter your address:");
+	    	
+	    	addr=sc.nextLine();
+	    	c1.set_address(addr);
+	    	
+	    	
+	
+	        c1.receivedFromServer(addr);
 		
 	}	
 	

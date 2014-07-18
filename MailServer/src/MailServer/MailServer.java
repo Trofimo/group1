@@ -22,31 +22,21 @@ public class MailServer {
 	
 	
 	Map<String, LinkedList<String>> outboxMessage=new LinkedHashMap<String, LinkedList<String>>();
-	Map<String, LinkedList<String>> allMessages=new LinkedHashMap<String, LinkedList<String>>();
-	BlockingQueue<Runnable>	actions = new LinkedBlockingQueue<>();
-	LinkedList<String> tx = new LinkedList<>();
-	ExecutorService sender = Executors.newCachedThreadPool();
+	
 	
 	
 	
 	
 	public LinkedList<String> selectAllMessagesForReceivder(String key){
+		LinkedList<String> tx = new LinkedList<>();
 		tx=outboxMessage.get(key);
 
         return tx;
 				
 	}
-	public void printAllMessageForReceivder(String key){
-		System.out.println("There is " + tx.size() +
-	            " messages for this address."+key);
-		LinkedList<String> list = selectAllMessagesForReceivder(key);
-		ListIterator<String> itr = list.listIterator();
-		while (itr.hasNext()){
-		    System.out.println(itr.next());}
-		
-		}
+	
 	public void putMessage(MailClient client){
-		
+		LinkedList<String> tx = new LinkedList<>();
         tx=outboxMessage.get(client.getAddress());
     	
     	if(tx==null){
@@ -58,7 +48,7 @@ public class MailServer {
     	tx.add(client.getText());
 		
 		
-		printAllMessageForReceivder(client.getAddress());
+		
 			
 	}
 	

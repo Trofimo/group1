@@ -1,6 +1,7 @@
 package MailServer;
 
 import java.util.LinkedList;
+import java.util.ListIterator;
 
 public class MailClient {
 
@@ -15,7 +16,7 @@ public class MailClient {
 	}
 
 	public String getAddressOfClient() {
-		// TODO Auto-generated method stub
+		
 		return null;
 	}
 
@@ -30,7 +31,17 @@ public class MailClient {
 		
 		
 	}
-
+    public  void printAllMessageForReceivder(String key){
+		
+		
+		LinkedList<String> list = ms.selectAllMessagesForReceivder(key);
+		System.out.println("There is " + list.size() +
+	            " messages for this address."+key);
+		ListIterator<String> itr = list.listIterator();
+		while (itr.hasNext()){
+		    System.out.println(itr.next());}
+		
+		}
 	public void set_isSender(boolean isSender) {
 		this.isSender = isSender;
 		
@@ -42,7 +53,7 @@ public class MailClient {
 		
 	}
 	public void receivedFromServer(String addr) {
-		ms.printAllMessageForReceivder(addr);
+		printAllMessageForReceivder(addr);
 		
 	}
 	public String getAddress() {
@@ -54,5 +65,7 @@ public class MailClient {
 		
 		return textFromScan;
 	}
+
+
 
 }

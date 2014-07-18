@@ -30,19 +30,37 @@ public class useMail {
 		System.out.println("Start");
 		try {
 			
-			Statement st = useMail.connection().createStatement();
+
 			
 
 			
-			PreparedStatement prepareStatement = 
-					useMail.connection().prepareStatement("insert into Text (text) values (?);");
-			addRowToTableText(prepareStatement, "Pete");
+//			PreparedStatement prepareStatement = 
+//					useMail.connection().prepareStatement("insert into Text (text) values (?);");
+//			addRowToTableText(prepareStatement, "Pete");
 			
+			PreparedStatement prepareStatement1 = 
+					useMail.connection().prepareStatement("insert into Address (address) values (?);");
+			addRowToTableAddress(prepareStatement1, "pete@mail.ru");
+			
+			
+			//showAllFromTableText();
+			showAllFromTableAddress();
+
+		} catch (SQLException e) {
+			
+			e.printStackTrace();
+		}
+
+	}
+	public static void showAllFromTableText(){
+		Statement st;
+		try {
+			
+			st = useMail.connection().createStatement();
 			ResultSet resultSet = st.executeQuery("Select * from Text");
 			while(resultSet.next()){
 				System.out.print(resultSet.getString("id")+" ");
 				System.out.println(resultSet.getString("text"));
-				
 			}
 			resultSet.close();
 			st.close();
@@ -50,9 +68,11 @@ public class useMail {
 			
 			e.printStackTrace();
 		}
-
+		
+			
+		
+		
 	}
-	
 	public static void addRowToTableText(PreparedStatement prepareStatement,String name){
 		try {
 			
@@ -64,5 +84,36 @@ public class useMail {
 			e.printStackTrace();
 		}
 	}
-
+	public static void showAllFromTableAddress(){
+		Statement st;
+		try {
+			
+			st = useMail.connection().createStatement();
+			ResultSet resultSet = st.executeQuery("Select * from Address");
+			while(resultSet.next()){
+				System.out.print(resultSet.getString("id")+" ");
+				System.out.println(resultSet.getString("address"));
+			}
+			resultSet.close();
+			st.close();
+		} catch (SQLException e) {
+			
+			e.printStackTrace();
+		}
+		
+			
+		
+		
+	}
+	public static void addRowToTableAddress(PreparedStatement prepareStatement,String address){
+		try {
+			
+			prepareStatement.setString(1, address);
+			
+			prepareStatement.execute();
+		} catch (SQLException e) {
+			
+			e.printStackTrace();
+		}
+	}
 }

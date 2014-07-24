@@ -45,10 +45,10 @@ public class Tetris {
 					controller.moveRight();
 				}
 				if (e.getKeyCode() == KeyEvent.VK_DOWN) {
-					controller.dropDown(true);
+					controller.dropDown();
 				}
 				if (e.getKeyCode() == KeyEvent.VK_SPACE) {
-					controller.rotate(true);
+					controller.rotate();
 				}
 				if (e.getKeyCode() == KeyEvent.VK_UP ) {
 					controller.pause();
@@ -71,7 +71,7 @@ public class Tetris {
 			public void run() {
 				controller.slideDownOneRow();
 			}
-		}, 500, 200, TimeUnit.MILLISECONDS);
+		}, 500, 1000, TimeUnit.MILLISECONDS);
 	}
 	
 }

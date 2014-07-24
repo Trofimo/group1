@@ -28,13 +28,13 @@ public class Controller implements ModelListener, EventProcessor {
 	}
 
 	@Override
-	public void rotate(boolean b) {
-		model.rotate(b);
+	public void rotate() {
+		model.rotate();
 	}
 
 	@Override
-	public void dropDown(boolean b) {
-		model.dropDown(b);
+	public void dropDown() {
+		model.dropDown();
 	}
 
 	@Override

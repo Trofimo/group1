@@ -27,13 +27,13 @@ public class Model implements EventProcessor {
 		listener.updateState(state);
 	}
 	@Override
-	public void rotate(boolean b) {
-		logic.rotate(b);
+	public void rotate() {
+		logic.rotate();
 		listener.updateState(state);
 	}
 	@Override
-	public void dropDown(boolean b) {
-		logic.dropDown(b);
+	public void dropDown() {
+		logic.dropDown();
 		listener.updateState(state);
 	}
 	@Override

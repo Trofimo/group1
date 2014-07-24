@@ -25,21 +25,13 @@ public class Logic implements EventProcessor {
 	}
 
 	@Override
-	public void rotate(boolean b) {
-		// TODO Auto-generated method stub
-		if(b==true){
+	public void rotate() {
 		state.rotate();
-		}
 	}
 
 	@Override
-	public void dropDown(boolean b) {
-
-		if(b==true){
+	public void dropDown() {
 			slideDownOneRow();
-		}	
-			
-		
 	}
 
 	@Override

@@ -6,10 +6,10 @@ public interface EventProcessor {
 
 	void moveRight();
 
+	void rotate(boolean b);
+
+	void dropDown(boolean b);
+
 	void slideDownOneRow();
-
-	void dropdown();
-
-	void rotate();
 
 }

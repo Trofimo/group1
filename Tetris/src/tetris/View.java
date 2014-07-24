@@ -1,42 +1,36 @@
 package tetris;
 
-import java.awt.Color;
-import java.awt.Graphics2D;
-import java.awt.event.KeyAdapter;
-import java.awt.event.KeyEvent;
+public class View {
 
-public class View extends KeyAdapter {
+	private Kernel _kernel;
 
-	private static final int CELL_SIZE = 30;
-	private Graphics2D graphics;
-	private EventProcessor processor;
-
-	public View(Graphics2D graphics) {
-		this.graphics = graphics;
-	}
-	
-	public void setEventProcessor(EventProcessor processor){
-		this.processor = processor;
-		
+	public View(Kernel kernel) {
+		_kernel = kernel;
 	}
 
 	public void updateState(State state) {
-
-		graphics.clearRect(0, 0, 400, 700);
-		
-		graphics.setColor(Color.black);
-		graphics.fillRect(state.getFigureColumn() * CELL_SIZE, 
-				state.getFigureRow() * CELL_SIZE, CELL_SIZE, CELL_SIZE);
-		
+		drawField(state.field);
+		drawFigure(state);
 	}
 
-	@Override
-	public void keyPressed(KeyEvent e) {
-		if (e.getKeyCode() == KeyEvent.VK_LEFT){
-			processor.moveLeft();
-		}
-		if (e.getKeyCode() == KeyEvent.VK_RIGHT){
-			processor.moveRight();
+	private void drawFigure(State state) {
+		for (int r = 0; r < state.figure.data.length; r++) {
+			for (int c = 0; c < state.figure.data[r].length; c++) {
+				if (state.figure.data[r][c] == 0) {
+					continue;
+				}
+				_kernel.drawCell(state.figure.data[r][c], state.figureRow + r,
+						state.figureColumn + c);
+			}
 		}
 	}
+
+	private void drawField(Field field) {
+		for (int r = 0; r < field.box.length; r++) {
+			for (int c = 0; c < field.box[r].length; c++) {
+				_kernel.drawCell(field.box[r][c], r, c);
+			}
+		}
+	}
+
 }

@@ -52,8 +52,7 @@ public class Sudoku {
 		
 			for (int r = 0; r < array.length; r++) {
 				for (int c = cmin; c < cmax;) {
-					if(s.size()!=array.length){result =false;}
-					else{result =true;}
+					s.add(array[r][c]);
 				}
 			}
 			if(s.size()!=array.length){result =false;}

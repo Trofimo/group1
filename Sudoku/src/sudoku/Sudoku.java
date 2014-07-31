@@ -32,28 +32,28 @@ public class Sudoku {
 			
 		return result;
 	}
-	private Boolean isWinForRow(int rmin,int rmax) {
+	private Boolean isWinForRow(int r) {
 		Set<Integer> s=new HashSet<>();
 		
 		
 		
-			for (int r = rmin; r < rmax;) {
+			
 				for (int c = 0; c < array.length; c++) {
 					s.add(array[r][c]);	
 				}
-			}
+			
 			if(s.size()!=array.length){result =false;}
 			else{result =true;}
 		return result;
 	}
-	private Boolean isWinForCol(int cmin,int cmax) {
+	private Boolean isWinForCol(int c) {
 		
 		Set<Integer> s=new HashSet<>();
 		
 			for (int r = 0; r < array.length; r++) {
-				for (int c = cmin; c < cmax;) {
+				
 					s.add(array[r][c]);
-				}
+				
 			}
 			if(s.size()!=array.length){result =false;}
 			else{result =true;}
@@ -129,21 +129,45 @@ public class Sudoku {
 
 	public Boolean RectColOne() {
 		
-		return isWinForCol(0,3);
+		return isWinForCol(0);
 	}
 
 
 
 	public Boolean RectColTwo() {
 		
-		return isWinForCol(3,6);
+		return isWinForCol(1);
 	}
 
 
 
 	public Boolean RectColThree() {
 		
-		return isWinForCol(6,9);
+		return isWinForCol(2);
+	}
+	public Boolean RectColFour() {
+		
+		return isWinForCol(3);
+	}
+	public Boolean RectColFive() {
+		
+		return isWinForCol(4);
+	}
+	public Boolean RectColSix() {
+		
+		return isWinForCol(5);
+	}
+	public Boolean RectColSeven() {
+		
+		return isWinForCol(6);
+	}
+	public Boolean RectColEight() {
+		
+		return isWinForCol(7);
+	}
+	public Boolean RectColNine() {
+		
+		return isWinForCol(8);
 	}
 
 
@@ -151,21 +175,51 @@ public class Sudoku {
 	public Boolean RectRowOne() {
 		
 		
-		return isWinForRow(0,3);
+		return isWinForRow(0);
 	}
 
 
 
-	public Object RectRowTwo() {
+	public Boolean RectRowTwo() {
 		
-		return isWinForRow(3,6);
+		return isWinForRow(1);
 	}
 
 
 
-	public Object RectRowThree() {
+	public Boolean RectRowThree() {
 		
 		
-		return isWinForRow(6,9);
+		return isWinForRow(2);
+	}
+	public Boolean RectRowFour() {
+		
+		
+		return isWinForRow(3);
+	}
+	public Boolean RectRowFive() {
+		
+		
+		return isWinForRow(4);
+	}
+	public Boolean RectRowSix() {
+		
+		
+		return isWinForRow(5);
+	}
+	public Boolean RectRowSeven() {
+		
+		
+		return isWinForRow(6);
+	}
+	public Boolean RectRowEight() {
+		
+		
+		return isWinForRow(7);
+	}
+	public Boolean RectRowNine() {
+		
+		
+		return isWinForRow(8);
 	}
 }

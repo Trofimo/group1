@@ -1,17 +1,18 @@
 package tetris;
 
-public class Model implements EventProcessor{
+public class Model implements EventProcessor {
 
 	State state;
 	Logic logic;
 	
 	public Model() {
-		this.state = new State();
-		this.logic = new Logic(state);
+		state = new State();
+		logic = new Logic(state);
 	}
+	
 	ModelListener listener;
 	
-	public void setListener(ModelListener listener){
+	public void setListener(ModelListener listener) {
 		this.listener = listener;
 	}
 	
@@ -26,20 +27,33 @@ public class Model implements EventProcessor{
 		listener.updateState(state);
 	}
 	@Override
-	public void slideDownOneRow() {
-		logic.slideDownOneRow();
-		listener.updateState(state);
-	}
-	@Override
-	public void dropdown() {
-		logic.dropdown();
-		listener.updateState(state);
-	}
-	@Override
 	public void rotate() {
 		logic.rotate();
 		listener.updateState(state);
 	}
-	
-	
+	@Override
+	public void dropDown() {
+		logic.dropDown();
+		listener.updateState(state);
+	}
+	@Override
+	public void slideDownOneRow() {
+		logic.slideDownOneRow();
+		listener.updateState(state);
+	}
+
+	public void pause() {
+		logic.pause();
+		
+	}
+
+	public void resume() {
+		logic.resume();
+		
+	}
+
+	public void menu() {
+		logic.menu();
+		
+	}
 }

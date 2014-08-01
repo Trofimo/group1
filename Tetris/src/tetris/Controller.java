@@ -1,7 +1,7 @@
 package tetris;
 
 public class Controller implements ModelListener, EventProcessor {
-
+	
 	Model model;
 	View view;
 	
@@ -9,7 +9,6 @@ public class Controller implements ModelListener, EventProcessor {
 		super();
 		this.model = model;
 		this.view = view;
-		
 		model.setListener(this);
 	}
 
@@ -29,19 +28,36 @@ public class Controller implements ModelListener, EventProcessor {
 	}
 
 	@Override
+	public void rotate() {
+		model.rotate();
+	}
+
+	@Override
+	public void dropDown() {
+		model.dropDown();
+	}
+
+	@Override
 	public void slideDownOneRow() {
 		model.slideDownOneRow();
 	}
 
-	@Override
-	public void dropdown() {
-		model.dropdown();
+	public void pause() {
+		model.pause();
 		
 	}
 
-	@Override
-	public void rotate() {
-		model.rotate();		
+	public void resume() {
+		model.resume();
+		
+	}
+
+	public void menu() {
+		model.menu();
+		
 	}
 	
+	
+	
+
 }

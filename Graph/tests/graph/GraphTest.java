@@ -19,15 +19,10 @@ public class GraphTest {
             { 1, 1, 1, 0 ,1},
             { 2, 1, 1, 2 ,1}, 
           };
-        gr.b=new boolean[][]{
-        		{false,false,false,false,false},
-        		{false,false,false,false,false},
-        		{false,false,false,false,false},
-        		{false,false,false,false,false},
-        		
-        		{false,false,false,false,false},
-        		};
+       gr.b=new boolean[5][5];
 	}
+	
+	
 	
 	@Test
 	public void testUp() {
@@ -37,6 +32,7 @@ public class GraphTest {
 		l.add(2,"24");
 		l.add(3,"14");
 		l.add(4,"04");
+		System.out.println(l);
 		
 		assertEquals(l, gr.findUp(4,4));
 		

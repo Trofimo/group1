@@ -1,75 +1,75 @@
 package graph;
 
 import static org.junit.Assert.*;
+import graph.Graph.Pair;
+
 import java.util.LinkedList;
+
 import org.junit.Before;
 import org.junit.Test;
 
 public class GraphTest {
 	private Graph gr;
-	private LinkedList<Integer>X=new LinkedList<>();
-	private LinkedList<Integer>Y=new LinkedList<>();
+	//private Pair p;
+	private LinkedList<String>coord=new LinkedList<>();
+	
+	private int[][] a;
 	
 	@Before
 	public void setup(){
 		gr=new Graph();
-        gr.a = new int[][] { 
+        a = new int[][] { 
         		{ 1, 1, 1 }, 
         		{ 1, 1, 2 }, 
-        		{ 3, 3, 2 }, };
-        gr.b=new boolean[3][3];
+        		{ 3, 3, 2 }, 
+        		};
+        
 	}
 	
 	
 	
 	@Test
 	public void testNumberOne() {
-		X.clear();
-		Y.clear();
-		
-		X.add(0,0);Y.add(0,0);
-		X.add(1,0);Y.add(1,1);
-		X.add(2,0);Y.add(2,2);
-		X.add(3,1);Y.add(3,0);
-		X.add(4,1);Y.add(4,1);
+		coord.clear();
+		coord.add(0,(new Pair(0,0).getPair()));
+		coord.add(1,(new Pair(0,1).getPair()));
+		coord.add(2,(new Pair(0,2).getPair()));
+		coord.add(3,(new Pair(1,0).getPair()));
+		coord.add(4,(new Pair(1,1).getPair()));
 		
 		
 		
-		assertEquals(X, gr.findAllX(0,0));
-		System.out.println("X: "+gr.findAllX(0,0));
-		assertEquals(Y, gr.findAllY(0,0));
-		System.out.println("Y: "+gr.findAllY(0,0));
+		assertEquals(coord, gr.findAll(a,0,0));
+		
+		
 	}
 	@Test
 	public void testNumberTwo() {
-		X.clear();
-		Y.clear();
+		coord.clear();
+		coord.add(0,(new Pair(1,2).getPair()));
+		coord.add(1,(new Pair(2,2).getPair()));
 		
 		
 		
-		X.add(0,1);Y.add(0,2);
-		X.add(1,2);Y.add(1,2);
+		assertEquals(coord, gr.findAll(a,2,2));
 		
 		
-		assertEquals(X, gr.findAllX(2,2));
-		System.out.println("X: "+gr.findAllX(2,2));
-		assertEquals(Y, gr.findAllY(2,2));
-		System.out.println("Y: "+gr.findAllY(2,2));
 	}
 	@Test
 	public void testNumberThree() {
-		X.clear();
-		Y.clear();
+		coord.clear();
+		coord.add(0,(new Pair(2,0).getPair()));
+		coord.add(1,(new Pair(2,1).getPair()));
 		
 		
 		
-		X.add(0,2);Y.add(0,0);
-		X.add(1,2);Y.add(1,1);
+		
+		assertEquals(coord, gr.findAll(a,2,0));
 		
 		
-		assertEquals(X, gr.findAllX(2,0));
-		System.out.println("X: "+gr.findAllX(2,0));
-		assertEquals(Y, gr.findAllY(2,0));
-		System.out.println("Y: "+gr.findAllY(2,0));
 	}
+
+	
+	
+
 }

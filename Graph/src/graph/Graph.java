@@ -1,61 +1,81 @@
 package graph;
 
+
 import java.util.LinkedList;
+
 
 
 
 public class Graph {
 
-	int[][] a ; 
-
-	boolean[][] b = new boolean[3][3];
-	LinkedList<Integer> coordX = new LinkedList<>();
-	LinkedList<Integer> coordY = new LinkedList<>();
+	
+	 
+	  static public class Pair{
+	        private int _x;
+			private int _y;
+			
+			public Pair(int x,int y) {
+				this._x = x;
+				this._y = y;
+				
+			}
+			public String getPair(){
+				
+				
+				return Integer.toString(_x)+Integer.toString(_y);}
+			
+	       
+	      
+	    }
+	 
+	
+	
+	
+	LinkedList<String> coord = new LinkedList<>();
+	
+	private boolean[][] b ;
 
 	static int value = 0;
 
-	public  LinkedList<Integer> findAllX(int row, int col) {
-		value = a[row][col];
-		//coordX.clear();
+	public  LinkedList<String> findAll(int[][] m,int row, int col) {
+		value = m[row][col];
+		setSize(m);
+		
 		for (int i = 0; i < b.length; i++) {
 			for (int j = 0; j < b[i].length; j++) {
 
 				// для каждого направления:
-				find(i, j);
+				find(m,i, j);
 
 			}
 		}
 
-		return coordX;
+		return coord;
 
 	}
-	public  LinkedList<Integer> findAllY(int row, int col) {
-		value = a[row][col];
-		//coordY.clear();
-		for (int i = 0; i < b.length; i++) {
-			for (int j = 0; j < b[i].length; j++) {
-				
-				// для каждого направления:
-				find(i, j);
-				
-			}
-		}
-		
-		return coordY;
+
+
+	private void setSize(int[][] m) {
+		b=new boolean[m.length][m.length] ;
 		
 	}
+	
 
-	private  void find(int r, int c) {
+	private  void find( int[][] m,int r, int c) {
 
+		
+		
+		
 		if (b[r][c] != true) {
 
 			if
 
-			(value == a[r][c])
+			(value == m[r][c])
 
 			{
-				coordX.add(r);
-				coordY.add(c);
+				
+				coord.add(new Pair(r,c).getPair());
+
 
 				b[r][c] = true;
 

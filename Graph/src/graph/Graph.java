@@ -1,6 +1,8 @@
 package graph;
 
 
+
+import java.util.Collection;
 import java.util.LinkedList;
 
 
@@ -15,14 +17,23 @@ public class Graph {
 			private int _y;
 			
 			public Pair(int x,int y) {
-				this._x = x;
-				this._y = y;
+				this.set_x(x);
+				this.set_y(y);
 				
 			}
-			public String getPair(){
+			public Collection<? extends Pair> getPair(){
 				
 				
-				return Integer.toString(_x)+Integer.toString(_y);}
+				return coord;
+				}
+
+			public void set_x(int _x) {
+				this._x = _x;
+			}
+
+			public void set_y(int _y) {
+				this._y = _y;
+			}
 			
 	       
 	      
@@ -31,13 +42,13 @@ public class Graph {
 	
 	
 	
-	LinkedList<String> coord = new LinkedList<>();
+	static LinkedList<Pair> coord = new LinkedList<>();
 	
 	private boolean[][] b ;
 
 	static int value = 0;
 
-	public  LinkedList<String> findAll(int[][] m,int row, int col) {
+	public  LinkedList<Pair> findAll(int[][] m,int row, int col) {
 		value = m[row][col];
 		setSize(m);
 		
@@ -73,8 +84,10 @@ public class Graph {
 			(value == m[r][c])
 
 			{
+				Pair p = new Pair(r,c);
 				
-				coord.add(new Pair(r,c).getPair());
+				
+				coord.addAll(p.getPair());
 
 
 				b[r][c] = true;

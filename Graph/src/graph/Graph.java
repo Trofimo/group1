@@ -1,102 +1,116 @@
 package graph;
 
-
-
-import java.util.Collection;
 import java.util.LinkedList;
-
-
-
 
 public class Graph {
 
-	
-	 
-	  static public class Pair{
-	        private int _x;
-			private int _y;
-			
-			public Pair(int x,int y) {
-				this.set_x(x);
-				this.set_y(y);
-				
-			}
-			public Collection<? extends Pair> getPair(){
-				
-				
-				return coord;
-				}
+	int[][] a ;
 
-			public void set_x(int _x) {
-				this._x = _x;
-			}
+	static public class Pair {
+		private int _x;
+		private int _y;
 
-			public void set_y(int _y) {
-				this._y = _y;
+		public Pair(int x, int y) {
+			this.set_x(x);
+			this.set_y(y);
+
+		}
+
+		public int get_x() {
+			return _x;
+		}
+
+		public int get_y() {
+			return _y;
+		}
+
+		public void set_x(int _x) {
+			this._x = _x;
+		}
+
+		public void set_y(int _y) {
+			this._y = _y;
+		}
+
+		@Override
+		public String toString() {
+			return _x + "," + _y;
+		}
+		
+		@Override
+		public boolean equals(Object obj) {
+			if (obj instanceof Pair) {
+				Pair other = (Pair) obj;
+				return (other._x == _x && other._y == _y); 
 			}
-			
-	       
-	      
-	    }
-	 
-	
-	
-	
-	static LinkedList<Pair> coord = new LinkedList<>();
-	
-	private boolean[][] b ;
+			return super.equals(obj);
+		}
+
+	}
+
+	LinkedList<Pair> coord = new LinkedList<>();
+	LinkedList<Pair> queue = new LinkedList<>();
+
+	private boolean[][] b;
 
 	static int value = 0;
 
-	public  LinkedList<Pair> findAll(int[][] m,int row, int col) {
-		value = m[row][col];
-		setSize(m);
-		
-		for (int i = 0; i < b.length; i++) {
-			for (int j = 0; j < b[i].length; j++) {
+	private void find(int[][] m, int row, int col) {
 
-				// для каждого направления:
-				find(m,i, j);
+		int x = 0;
+		int y = 0;
+
+		if (b[row][col] != true) {
+
+			if (value == m[row][col]) {
+				coord.add(new Pair(row, col));
+				b[row][col] = true;
 
 			}
+			if ((row) != m.length - 1) {
+				if (m[row][col] == m[row + 1][col]) {
+					queue.add(new Pair(row + 1, col));
+				}
+			}
+			if (row != 0) {
+				if (m[row][col] == m[row - 1][col]) {
+					queue.add(new Pair(row - 1, col));
+				}
+			}
+			if (col != 0) {
+				if (m[row][col] == m[row][col - 1]) {
+					queue.add(new Pair(row, col - 1));
+				}
+			}
+			if ((col) != m.length - 1) {
+				if (m[row][col] == m[row][col + 1]) {
+					queue.add(new Pair(row, col + 1));
+				}
+			}
+
+		}
+		queue.removeFirst();
+		// для каждого направления:
+		if (!queue.isEmpty()) {
+			x = queue.peek().get_x();
+			y = queue.peek().get_y();
+
+			find(m, x, y);
+
 		}
 
+	}
+
+	public LinkedList<Pair> findAll(int[][] m, int valuex, int valuey) {
+		value = m[valuex][valuey];
+		
+		coord.clear();
+
+		queue.add(new Pair(valuex, valuey));
+		b = new boolean[m.length][m.length];
+
+		find(m, valuex, valuey);
 		return coord;
-
 	}
-
-
-	private void setSize(int[][] m) {
-		b=new boolean[m.length][m.length] ;
-		
-	}
-	
-
-	private  void find( int[][] m,int r, int c) {
-
-		
-		
-		
-		if (b[r][c] != true) {
-
-			if
-
-			(value == m[r][c])
-
-			{
-				Pair p = new Pair(r,c);
-				
-				
-				coord.addAll(p.getPair());
-
-
-				b[r][c] = true;
-
-			}
-
-		}
-
-	}
-	
 
 }

@@ -57,8 +57,7 @@ public class Graph {
 
 	private void find(int[][] m, int row, int col) {
 
-		int x = 0;
-		int y = 0;
+		
 
 		if (b[row][col] != true) {
 
@@ -90,14 +89,7 @@ public class Graph {
 
 		}
 		queue.removeFirst();
-		// для каждого направления:
-		if (!queue.isEmpty()) {
-			x = queue.peek().get_x();
-			y = queue.peek().get_y();
 
-			find(m, x, y);
-
-		}
 
 	}
 
@@ -109,7 +101,18 @@ public class Graph {
 		queue.add(new Pair(valuex, valuey));
 		b = new boolean[m.length][m.length];
 
-		find(m, valuex, valuey);
+		
+		
+		// для каждого направления:
+		int x = 0;
+		int y = 0;
+		while (!queue.isEmpty()) {
+			x = queue.peek().get_x();
+			y = queue.peek().get_y();
+
+			find(m, x, y);
+
+		}
 		return coord;
 	}
 

@@ -32,7 +32,7 @@ public class GraphTest {
 		coord.add(new Pair(0, 0));
 
 		assertEquals(1, gr.findAll(a, 0, 0).size());
-		//System.out.println(gr.findAll(a, 0, 0).toString());
+		
 		assertEquals(coord, gr.findAll(a, 0, 0));
 
 	}
@@ -59,7 +59,7 @@ public class GraphTest {
 		coord.add(new Pair(2, 1));
 
 		assertEquals(coord.toString(), gr.findAll(a, 2, 0).toString());
-
+		
 	}
 
 }

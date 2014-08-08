@@ -1,24 +1,29 @@
 package balanstest;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
-import org.junit.Before;
 import org.junit.Test;
 
 import balans.Balans;
 
 public class BalansTest {
-	private int[] _a;
+
 	private Balans b=new Balans();
-	@Before
-	public void setup(){
-		_a=new int[]{1,5,6,7,10};
-		
-	}
+	private int[] _a;
 	@Test
-	public void test() {
+	public void testNotBalanced() {
+		_a=new int[]{1,5,6,7,10};
 		assertEquals(-1, b.balans(_a));
+		
 		
 	}
 
+	@Test
+	public void testBalanced() {
+		
+		_a=new int[]{1,5,6,7,9,10};
+		assertEquals(3, b.balans(_a));
+		
+	}
+	
 }

@@ -11,6 +11,8 @@ import java.util.StringTokenizer;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import javax.xml.bind.annotation.XmlElementDecl.GLOBAL;
+
 public class SourceCounter {
 
 	public int countText(String filePath) throws IOException {
@@ -24,33 +26,49 @@ public class SourceCounter {
 		while (sc.hasNextLine()) {
 			str = sc.nextLine();
 			
-			// в начале проверяем /**/
-
+			
+			Pattern p1 = Pattern.compile("([/[\\*]+]+[A-Za-z0-9\\-_]*[[/[\\*]+]+]+)");
+			Matcher m1= p1.matcher(str);
+			str = m1.replaceAll("");	
+			
+			
+			
+			
 			Pattern p = Pattern.compile("/\\*+");
-			Matcher m = p.matcher(str);
-			// если обнаруживаем открывающийся блок
+			
+			
+			Matcher  m = p.matcher(str);
+			
+			
+			
+			// если обнаруживаем открывающийся блок /**/
 			if (m.find()) {
-				b = true;
+				b=true;
 				
-			}
-
-			if (b) {
-				// 1.удаляем первую строчку с откр /* фрагмент
-				str = m.replaceAll("");
 				
-				Pattern p1 = Pattern.compile("(^.*[.\\*]+/)");
+			}	
+			if(b){
+			// 1.заменяем найденный фрагмент с откр /* на ""
+			str = m.replaceAll("");	
+			Pattern p2 = Pattern.compile("(.*[.\\*]+/)");
 				
-				Matcher m1 = p1.matcher(str);
+				Matcher m2 = p2.matcher(str);
 				// 3.проверяем есть ли закр */
-				if (m1.find()) {
-
+				if (m2.find()) {
+					
 					// 5.если есть то удаляем только до */ включительно
-					str = m1.replaceAll("");
-					b = false;
-
+					str = m2.replaceAll("");
+					b=false;
+					
+					// 6.если нет то удаляем всю строку до конца
 				}else{str="";}
-
+				
+			
 			}
+			
+				
+			
+			
 			
 			// после этого можно и // вид комментариев проверить
 			p = Pattern.compile("//.+$");
@@ -84,3 +102,9 @@ public class SourceCounter {
 		return res;
 	}
 }
+
+
+
+
+
+
